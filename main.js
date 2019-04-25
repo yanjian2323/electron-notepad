@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron')
+const { app, BrowserWindow, Menu, MenuItem } = require('electron')
 const path = require('path')
 
 const menuTemplate = require('./menu')
@@ -11,18 +11,19 @@ const createWindow = () => {
     show: false,
   })
   const menu = Menu.buildFromTemplate(menuTemplate)
+  
   // 新建
-  menu.items[0].submenu.items[0].click = () => {
+  menu.items[1].submenu.items[0].click = () => {
     console.log('new')
     win.webContents.send('action', 'new')
   }
   // 打开
-  menu.items[0].submenu.items[1].click = () => {
+  menu.items[1].submenu.items[1].click = () => {
     console.log('open')
     win.webContents.send('action', 'open')
   }
   // 保存
-  menu.items[0].submenu.items[2].click = () => {
+  menu.items[1].submenu.items[2].click = () => {
     console.log('save')
     win.webContents.send('action', 'save')
   }
